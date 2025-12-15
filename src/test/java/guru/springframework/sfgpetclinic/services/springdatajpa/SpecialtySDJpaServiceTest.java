@@ -29,6 +29,7 @@ class SpecialtySDJpaServiceTest {
         specialtySDJpaService.deleteById(1L);
         specialtySDJpaService.deleteById(1L);
         verify(specialtyRepository, times(2)).deleteById(1L);
+        verify(specialtyRepository).deleteById(anyLong());
     }
 
     @Test
@@ -79,5 +80,7 @@ class SpecialtySDJpaServiceTest {
     @Test
     void testDeleteObject() {
         Specialty specialty = new Specialty();
+        specialtySDJpaService.delete(specialty);
+        verify(specialtyRepository).delete(any(Specialty.class));
     }
 }
